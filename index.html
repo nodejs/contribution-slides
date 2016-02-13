@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Healthy Open Source</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      blockquote {
+        font-family:"Courier New", Courier, monospace;
+        background-color:#E8E8E8;
+        padding: 3px 5px 3px 5px;
+      }
+      blockquote p, blockquote ul {
+        margin-left:15px;
+        margin-right:15px;
+      }
+      div.remark-slide-content p img {
+        max-height:500px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Healthy Open Source
+## A walkthrough of the Node.js Foundation's base contribution policy.
+
+???
+
+A lot has changed since io.js and Node.js merged under the Node.js Foundation but
+the most impressive thing, and probably the thing that is most relevant to the rest of
+the community and to open source in general, is that the project has gone from a list
+of contributors you can count on one hand to several hundred.
+
+Node.js now has over 400 org members across the project in over 80 teams.
+
+The Node.js core master branch alone has almost 300 commits a month by over a hundred
+authors.
+
+Now that Node.js is healthy the foundation is looking to promote the same kind of sustainability
+in the ecosystem. This includes a new umbrella for additional projects of which Express has just
+entered and the creation of this new contribution policy which is the default policy for projects
+entering the foundation and can also be used by any project in the ecosystem that wishes to.
+
+---
+class: middle
+
+## Node.js Community Contributing Guide 1.0
+
+* Current version lives in [`nodejs/TSC`](https://github.com/nodejs/TSC/blob/master/BasePolicies/CONTRIBUTING.md)
+* We expect to make improvements and release future versions.
+* Any feedback or questions should be logged as issues on the TSC repository.
+
+???
+
+Go through bullet points.
+
+As I walk through this talk I'll mostly speak to what is being displayed, which is literally
+the policy itself section by section. I'm not going to read each section for you, because you
+have eyes and can read.
+
+---
+
+class: middle
+
+> This document describes a very simple process suitable for most projects in the Node.js ecosystem. 
+Projects are encouraged to adopt this whether they are hosted in the Node.js Foundation or not.
+
+???
+
+* There are large variations in contribution processes across the foundation, 
+  this is a minimalist version of those processes.
+* When new projects come into the foundation they have this policy but are free to make adjustments
+  or even write entirely new policies.
+* While this is maintained by the Node.js Foundation it is intended to be usable by projects
+  outside the foundation.
+  
+---
+
+class: middle
+
+> The goal of this document is to create a contribution process that:
+> * Encourages new contributions.
+> * Encourages contributors to remain involved.
+> * Avoids unnecessary processes and bureaucracy whenever possible.
+> * Creates a transparent decision making process which makes it clear how contributors 
+    can be involved in decision making.
+
+???
+
+Most contribution processes end up being created by maintainers who are feel overloaded.
+That's why these documents have traditionally been about processes the making things easier
+for a small group of maintainers more than being about actually attracting new contributors.
+
+We've gone the opposite route. The purpose of the policy is to gain contributors, to retain them
+as much as possible, and use that much larger and growing contributor base to manage the
+corresponding influx of contributions.
+
+As projects mature there's a tendency to become top heavy and start to build a lot of processes
+that are difficult to jump through in order to get things done. Just the word *process* is a bit
+dirty to many open source contributors.
+
+We tend to focus on process as a way of adding transparency and not use excess process as a 
+quality control utility, that's what code review is for.
+
+---
+
+class: middle
+
+> This document is based on much prior art in the Node.js community, io.js, and the Node.js project.
+
+???
+
+This document is based on what we've learned growing the Node.js project. Not just core, which is
+a pretty massive undertaking, but also much smaller sub-projects like the website which have very
+different need and, as a result, very different processes.
+
+When began these reforms in the Node.js project we were taking a lot of inspiration from the 
+broader Node.js ecosystem. In particular, Rod Vagg's OPEN Open Source policies that had been
+successful in the levelup community and in `nan`. We also took a lot of inspiration, particularly
+around transparency and delegation from the NodeSchool community.
+
+---
+
+class: middle
+
+## Vocabulary
+> * **A Contributor** is any individual creating or commenting on an issue or pull request.
+> * **A Committer** is a subset of contributors who have been given write access to the repository.
+> * **A TC (Technical Committee)** is a group of committers representing the required technical expertise to resolve rare disputes.
+
+???
+
+Go through bullets.
+
+It's best to view the community in and around the project as a bunch of concentric circles.
+
+In the outermost circle you have users, within that you have contributors -- literally anyone
+who comments on an issue or sends a pull request -- then you have committers who can merge
+code and triage issues, and finally you have a smaller group of trusted experts who only
+get pulled in to the hard problems and can act as a tie breaker.
+
+---
+
+class: middle, center
+
+![Healthy Project Circle](circle1.png "Healthy Project Circle")
+
+???
+
+This is what a healthy project can look like. As the demands on the project increase so do
+the contributors, and the contributors increase so do the committers. There aren't huge
+disparities in the avaiable resources to keep the project going.
+
+---
+
+class: middle, center
+
+![Unhealthy Project Circle](circle2.png "Unhealthy Project Circle")
+
+???
+
+This is what unhealthy projects look like in their earliest stages, but imagine that the
+committers bubble is so small you can't actually read the word "committers" in it, and
+also image this is a logorithmic scale.
+
+You've got a massive user base pushing a lot of contributions onto a very small number of
+maintainers.
+
+A lot of projects are complaining nowadays about their tools, especially about GitHub. Node.js
+use GitHub to manage a much larger user and contributors base than they do and GitHub is *not*
+our bottleneck because we've grown the committer and contributor base.
+
+We know what happens to these projects over a long enough time period, more maintainers leave,
+contributions eventually fall, and *if we're lucky* users leave it.
+
+The number of users a project has are a *very* poor indicator of the health of the project.
+As contributions fell in Node.js users continued to increase unchanged. OpenSSL had more than
+a decade of decline in participation while it grew massively in usage and we all know what
+happened there.
+
+---
+
+class: middle
+
+## Logging Issues
+> Log an issue for any question or problem you might have. 
+> When in doubt, log an issue, any additional policies about 
+> what to include will be provided in the responses. The only 
+> exception is security dislosures which should be sent privately.
+
+???
+
+The first part of this is surprisingly controversial. A lot of maintainers lately have been
+complaining that there isn't a more heavy handed way of forcing people to read a document
+before they log an issue. We have documents all over projects in the foundation about writing
+good bug reports but, first and foremost, we encourage people to log something and don't put
+a lot of barriers to entry in the way.
+
+Sure, we get bad bugs, but we have a ton of contributors who can immediately work with people
+who log them to educate them on better practices and treat it as an opportunity to educate rather
+than a liability.
+
+Creating a lot of barriers to entry just reduces the number of people you have a chance to identify
+and education and potentially grow into greater contributors.
+
+Of course, never log a public about a security disclosure, ever. This is a bit vague about the
+best private venue because we can't determine that for every project that adopts this but we
+do have a private security list for Node.js that any foundation project can use.
+
+---
+
+class: middle
+
+## Logging Issues
+> Committers may direct you to another repository, ask for 
+> additional clarifications, and add appropriate metadata before the 
+> issue is addressed.
+
+???
+
+For smaller projects this isn't a big deal but in Node.js we've had to continually break off
+certain types of work into other repositories just to keep the volume on a single repo manageable.
+
+Still, all you have to do when someone puts something in the wrong place is direct them to the right
+one. 
+
+Another benefit of growing the committer base is that you have more people to deal with little things
+like these redirects or adding metadata to issues and PRs that allow some of the developers who are
+more specialized to be able to focus on just a narrow subset of issues and not to be spending their
+time triaging issues.
+
+---
+
+class: middle
+
+## Logging Issues
+> Please be courteous, respectful, and every participant is expected to follow 
+> the project's Code of Conduct.
+
+
+???
+
+One thing that is sure to burn a project out is when a lot of people start yelling at them and 
+coming at their project with a lot of hostility and entitlement. Most of the time this sentiment
+comes from a feeling that their input isn't valued but even when you do this well as a project
+people will show up who are used to more hostile environments and it's good to have these
+kinds of expectations explicit and written down.
+
+And you should have a Code of Conduct, that's a no brainer, let's not debate that.
+
+---
+
+class: middle
+
+## Contributions
+> Any change to resources in this repository must be through pull requests. This 
+> applies to all changes to documentation, code, binary files, etc. Even long term 
+> committers and TC members must use pull requests.
+>
+> No pull request can be merged without being reviewed.
+
+???
+
+Everything needs to be a pull request.
+
+A Pull Request captures the entire discussion and review of a change. Allowing some 
+subset of committers to slip things in without a Pull Request contributes to the 
+impression new and potential contributors have that they can't be involved in the 
+project because they don't have access to some kind of behind the scenes process
+or culture.
+
+This isn't just a good practice, it's a necessity if you want to be transparent enough
+to attract new contributors.
+
+---
+
+class: middle
+
+## Contributions
+> For non-trivial contributions, pull requests should sit for at least 36 hours to ensure 
+> that contributors in other timezones have time to review. Consideration should also be 
+> given to weekends and other holiday periods to ensure active committers all have reasonable 
+> time to become involved in the discussion and review process if they wish.
+
+???
+
+Part of being open and inviting to more contributors is making the process accessible to 
+people in timezones all over the world. You certainly don't want to add an artificial delay
+in small doc changes but for any change that needs a bit of consideration you need to give
+people in different parts of the world time to consider it.
+
+In Node.js we actually have an even longer timeline than this, 48 hours on weekdays and 72 
+on weekends. That might be too much for smaller projects so it is shorter in this base policy
+but as a project grows it will probably want to increase this as well.
+
+---
+
+class: middle
+
+## Contributions
+> The default for each contribution is that it is accepted once no committer has an objection. 
+> During review committers may also request that a specific contributor who is most versed in a 
+> particular area gives a "LGTM" before the PR can be merged. There is no additional "sign off" 
+> process for contributions to land. Once all issues brought by committers are addressed it can be 
+> landed by any committer.
+
+???
+
+A key part of these liberal contributors policies we've been building is an inversion of the
+typical code review process. Rather than the default mode for a change be that it is rejected
+until enough people sign off on it we say that the default is for every change to land. This
+put the onus on reviewers to note exactly what adjustments need to be made in order for it to land.
+
+For new contributors it's a big leap just to get that initial code up. Viewing the review process
+as a process of small adjustments and education, rather than a quality control heirarchy, does
+a lot to encourage and retain contributors.
+
+It's also important not to build processes that encourage a project to be too top heavy, with a
+few people needing to sign off on every change -- that just leads to burnout. Instead, we just
+use GitHub's @ mention features to pull the right people in when a change is in an area the project
+wants them to weigh in on. In Node.js we have people who are *the* experts on OpenSSL, any
+change to that is going to a LGTM from them. This kind of expertise forms naturally and this is 
+a good way to work with it without burning these experts out 
+
+---
+
+class: middle
+
+## Contributions
+> In the case of an objection being raised in a pull request by another committer, all involved 
+> committers should seek to arrive at a consensus by way of addressing concerns being expressed 
+> by discussion, compromise on the proposed change, or withdrawal of the proposed change.
+
+???
+
+This is what we call a lazy consensus seeking process. Most review comments and adjustments are
+uncontroversial. When there is disagreement you try to reach an easy consensus among the committers.
+
+90% of the time or more this is pretty simple, easy and obvious.
+
+---
+
+class: middle
+
+## Contributions
+> If a contribution is controversial and committers cannot agree about how to get it to land or 
+> if it should land then it should be escalated to the TC. TC members should regularly discuss 
+> pending contributions in order to find a resolution. It is expected that only a small minority 
+> of issues be brought to the TC for resolution and that discussion and compromise among committers 
+> be the default resolution mechanism.
+
+???
+
+For the minority of changes that are controversial and don't reach an easy consensus we escalate
+that to the TC. These are rare but when they do happen it's good reach a resolution quickly 
+rather than let things fester.
+
+We'll get into how the TC operates in a bit.
+
+---
+
+class: middle
+
+## Becoming a Committer
+> All contributors who land a non-trivial contribution should be on-boarded in a timely manner, and 
+> added as a committer, and be given write access to the repository.
+
+???
+
+This is where we diverge pretty sharply from open source tradition.
+
+Project's have historically guarded commmit rights pretty strongly. This actually made a lot of sense
+when we were using version control systems like subversion. A single contributor can inadvertently
+mess a project pretty bad in order version control systems, but not so much in git. In git, there
+isn't a lot you can't fix.
+
+Not every committer has the rights to release so we can be more liberal about giving out commit
+rights. That allows you to increase the committer base for code review and bug triage and as
+you get a wider range of expertise in the committer pool the smaller changes are reviewed
+and adjusted without the intervention of the more technical contributors who can spend their
+time on the reviews that only they can do.
+
+---
+
+class: middle
+
+## Becoming a Committer
+> Committers are expected to follow this policy and continue to send pull requests, go through 
+> proper review, and have other committers merge their pull requests.
+
+???
+
+This part is entirely redundant, but on purpose. Just a reminder that once you get a commit bit
+your changes still flow through the same process they did before.
+
+---
+
+class: middle
+
+## TC Process
+> The TC uses a "consensus seeking" process for issues that are escalated to the TC. The group 
+> tries to find a resolution that has no open objections among TC members. If a consensus cannot 
+> be reached that has no objections then a majority wins vote is called. It is also expected that 
+> the majority of decisions made by the TC are via a consensus seeking process and that voting is 
+> only used as a last-resort.
+
+???
+
+The best solution tends to be the one everyone can agree to. However, in pure consensus systems
+this weird thing happens where abstructionism gets incentivized.
+
+In pure consensus everyone essentially has a veto. So, if I *don't* want something to happen I'm
+in a strong position of power over everyone that *wants* something to happen. They have to convince
+me and I don't have to convince anyone.
+
+We use a system called "consesus seeking" which has a long history in social movements. Essentially,
+you attempt to reach a consensus but if you can't you just call for a majority wins vote. Just the
+fact that a vote is a possibility means that you can't be an obstructionist, whether you favor a
+change or not, you have to convince your peers and if you aren't willig to put in the work to
+convince your peers then you probably don't involve youself in that decision.
+
+The incentives here are pretty amazing, in Node.js Core we went a time where everyone disagreed
+and everyone was saying not to everything to a system where a lot is happening and going in and
+we've never actually have to resort to an official vote.
+
+---
+
+class: middle
+
+## TC Process
+> Resolution may involve returning the issue to committers with suggestions on how to move 
+> forward towards a consensus. It is not expected that a meeting of the TC will resolve all 
+> issues on its agenda during that meeting and may prefer to continue the discussion happening 
+> among the committers.
+
+???
+
+A TC tries to resolve things in a timely manor so that people can make progress but often
+it's better to provide some additional guidance that pushes the greater contributorship towards
+resolution without being heavy handed. You don't want to create these big decision heirachies,
+you want to invest in a broad and growing contributorship to continue to evolve and make
+forward progress without intervention and that won't happen if a few key people are
+constantly being pulled in to make tough decisions.
+
+---
+
+class: middle
+
+## TC <Process></Process>
+> Members can be added to the TC at any time. Any committer can nominate another committer to 
+> the TC and the TC uses its standard consensus seeking process to evaluate whether or not to 
+> add this new member. Members who do not participate consistently at the level of a majority 
+> of the other members are expected to resign.
+
+???
+
+The TC should just use the same standard consensus seeking process for adding new members as
+it uses for everything else. 
+
+It's also a good idea to encourage your committers to nominate people to the TC and not just
+wait around for TC members to notice the impact people are having. Listen to the broader
+committers about who they see as having a big impage.
+
+As a project grows it's also important to add people from a variety of skill sets. If you have
+people doing a lot of docs work, or test work, you want to treat the investment they are making
+as equally valuable as the hard technical stuff.
+
+You need to have the same ladder for every skillest you need to encourage to keep the project 
+healthy.
+
+I often see long time maintainers worry about adding people who don't understand *every* part
+of the project, as if they have to be involved in *every* decision. The reality is that people 
+do know their limitations and *want* to defer hard decisions to people they know have more 
+experience.
+
+The loud and entitled junior developers you see yelling at maintainers in projects that are
+struggling are incentivized to be that way. If there's only a few people maintaining a project
+and they are really knowledgable everyone who steps up to contribute thinks they need to 
+pretend to be just as knowledgable. When you have a healthier mix of skillsets and more
+committers who work through things by working towards a consensus, you filter out the 
+louder behavior because it just doesn't work.
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
